@@ -9,8 +9,12 @@ Bitmap::Bitmap(const char* filename);
 	delete matrix_;
 }
 
-bool Bitmap::Get(size_t r, size_t c);
+bool Bitmap::Get(size_t r, size_t c) {
+	return matrix_.get(r, c);
+}
 
-void Bitmap::Set(size_t r, size_t c, bool state);
+void Bitmap::Set(size_t r, size_t c, bool state) {
+	return matrix_.set(r, c, state);
+}
 
 void Bitmap::Save(const char* filename);
