@@ -1,11 +1,6 @@
 #include <stddef.h>
 #include <Matrix.h>
 
-struct IndexError
-{
-    char *log;
-};
-
 const IndexError Matrix::indexError_ = IndexError{"Index out of range"};
 
 void Matrix::checkIndexes_(size_t row, size_t col) const
