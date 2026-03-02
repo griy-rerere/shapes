@@ -7,7 +7,7 @@ bool testMatrixCreateSquare() {
 	Matrix m(R, C);
 	for (size_t r = 0; r < R; ++r)
 		for (size_t c = 0; c < C; ++c)
-			if (m.Get(r, c))
+			if (m.get(r, c))
 				return false;
 	return true;
 }
@@ -16,7 +16,7 @@ bool testMatrixCreateRow() {
 	const size_t C = 128;
 	Matrix m(1, C);
 	for (size_t c = 0; c < C; ++c)
-		if (m.Get(0, c))
+		if (m.get(0, c))
 			return false;
 	return true;
 }
@@ -25,7 +25,7 @@ bool testMatrixCreateCol() {
 	const size_t R = 128;
 	Matrix m(R, 1);
 	for (size_t r = 0; r < R; ++r)
-		if (m.Get(r, 0))
+		if (m.get(r, 0))
 			return false;
 	return true;
 }
@@ -37,8 +37,8 @@ bool testMatrixSetGetSquare() {
 	for (size_t r = 0; r < R; ++r)
 		for (size_t c = 0; c < C; ++c) {
 			auto val = static_cast<bool>((r + c) % 2);
-			m.Set(r, c, val);
-			if (m.Get(r, c) != val)
+			m.set(r, c, val);
+			if (m.get(r, c) != val)
 				return false;
 		}
 	return true;
