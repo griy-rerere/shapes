@@ -1,13 +1,13 @@
 #include <iostream>
 #include <ctime>
-#include "Source/App.h"
-#include "Source/Bitmap.h"
-#include "Source/Shapes.h"
-#include "Source/Storage.h"
+
+#include "App.h"
+#include "Identi.h"
+#include "Storage.h"
 
 int main() {
-    App app;
-
+    
+     App app;
      Identi i1 = app.addObject(PrimitiveType::POINT);
      Identi i2 = app.addObject(PrimitiveType::POINT);
      Storage<Identi> stor(2);
@@ -37,4 +37,7 @@ int main() {
      Storage<Identi> stor3(1);
      stor.addItem(i3);     
      app.addArrange(MutualArrangeType::SEGMENTLENGTH,stor, 10.1 );
+
+
+    return 0;
 }
