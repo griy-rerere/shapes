@@ -1,23 +1,29 @@
 RESULT_APP = shapes
 TEST_APP = test
 
-COMPILER_OPTIONS = -c -ISource
-
-SOURCE_FILES = shapes.cpp Source/App.cpp Source/Identi.cpp
-OBJ_FILES = $(SOURCE_FILES:.cpp=.o)
+COMPILER_OPTIONS = -c -I..\Source -I.\googletest\googletest\include -I.\googletest\googletest
 
 # --- Google Test ---
-GTEST_SRC = ../googletest/googletest/src/gtest-all.cc
-GTEST_MAIN = ../googletest/googletest/src/gtest_main.cc
+GTEST_SRC = ./googletest/googletest/src/gtest-all.cc
+GTEST_MAIN = ./googletest/googletest/src/gtest_main.cc
 
-TEST_SRC = test.cpp Matrix.cpp
-TEST_OBJ = $(TEST_SRC:.cpp=.o) gtest-all.o gtest_main.o
+TEST_SRC = test.cpp ../Source/Matrix.cpp
+TEST_OBJ = $(TEST_SRC:.cpp=.o) $(GTEST_SRC:.cc=.o) $(GTEST_MAIN:.cc=.o)
 
 # --- test app ---
-test: $(TEST_APP)
+Test: $(TEST_APP)
 
-$(TEST_APP): $(TEST_OBJ)
-	g++ $(TEST_OBJ) -o $@
+$(TEST_APP): googletest $(TEST_OBJ)
+	g++ $(COMPILER_OPTIONS) $(TEST_OBJ) -o $@
+
+googletest:
+	git clone https://github.com/google/googletest.git
+
+.cpp.o:
+	g++ $(COMPILER_OPTIONS) $< -o $@
+
+.cc.o:
+	g++ $(COMPILER_OPTIONS) $< -o $@
 
 clean:
 	rm -f *.o $(TEST_APP)
