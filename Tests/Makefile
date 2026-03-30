@@ -23,7 +23,7 @@ googletest:
 	g++ $(COMPILER_OPTIONS) $< -o $@
 
 .cc.o:
-	g++ $(COMPILER_OPTIONS) $< -o $@
+	g++ $< -o $@
 
 clean:
 	rm -f *.o $(TEST_APP)
