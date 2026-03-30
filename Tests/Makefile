@@ -1,7 +1,7 @@
 RESULT_APP = shapes
 TEST_APP = test
 
-COMPILER_OPTIONS = -c -I..\Source -I.\googletest\googletest\include -I.\googletest\googletest
+COMPILER_OPTIONS = -c -std=c++17 -I../Source -I./googletest/googletest/include -I./googletest/googletest
 
 # --- Google Test ---
 GTEST_SRC = ./googletest/googletest/src/gtest-all.cc
@@ -14,7 +14,7 @@ TEST_OBJ = $(TEST_SRC:.cpp=.o) $(GTEST_SRC:.cc=.o) $(GTEST_MAIN:.cc=.o)
 Test: $(TEST_APP)
 
 $(TEST_APP): googletest $(TEST_OBJ)
-	g++ $(COMPILER_OPTIONS) $(TEST_OBJ) -o $@
+	g++ $(TEST_OBJ) -o $@
 
 googletest:
 	git clone https://github.com/google/googletest.git
